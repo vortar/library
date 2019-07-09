@@ -15,7 +15,7 @@ public class ReaderDto {
     private Long id;
     private String name;
     private String surname;
-    private LocalDate dateOfCardInsertion;
+    private LocalDate localDate;
     private Loan loan;
 
 }

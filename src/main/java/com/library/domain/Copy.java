@@ -18,7 +18,8 @@ public class Copy {
     private Book book;
     private String title;
 
-    public Copy() {}
+    public Copy() {
+    }
 
     public Copy(Long id, String status, String title) {
         this.id = id;

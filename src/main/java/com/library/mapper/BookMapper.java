@@ -16,6 +16,8 @@ public class BookMapper {
                 bookDto.getAuthors(),
                 bookDto.getKind(),
                 bookDto.getCopies());
+
+
     }
 
     public BookDto mapToBookDto(final Book book) {
@@ -25,6 +27,7 @@ public class BookMapper {
                 book.getAuthor(),
                 book.getKind(),
                 book.getCopies());
+
     }
 
     public List<BookDto> mapToBookDtoList(final List<Book> bookList) {

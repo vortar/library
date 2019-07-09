@@ -1,17 +1,11 @@
 package com.library.controller;
 
 
-import com.library.domain.AuthorsOfBooks;
-import com.library.domain.AuthorsOfBooksDto;
-import com.library.domain.KindsOfBooks;
-import com.library.domain.TitleOfBooks;
+import com.library.domain.*;
 import com.library.libraryClient.LibraryClient;
-import com.library.mapper.AuthorsMapper;
-import com.library.service.DbServiceLibrary;
+import com.library.service.DbServiceBook;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,37 +17,23 @@ public class LibraryController {
     private LibraryClient libraryClient;
 
     @Autowired
-    private AuthorsMapper authorsMapper;
-    @Autowired
-    private DbServiceLibrary dbServiceLibrary;
+    private DbServiceBook dbServiceBook;
 
-    @GetMapping(value = "kinds")
-    public void getThemes() {
-        List<KindsOfBooks> kindsOfBooks = libraryClient.getKindsOfBooks();
-
-        kindsOfBooks.forEach(kindOfBooks -> System.out.println(kindOfBooks.getName()));
-
-    }
-
-
-    @GetMapping(value = "books")
+    @GetMapping(value = "title")
     public void getTitleOfBooks() {
-        List<TitleOfBooks> titleOfBooks = libraryClient.getBookTitle();
+        List<Book> books = libraryClient.getBookTitle();
 
-        titleOfBooks.forEach(titleOfBook -> System.out.println(titleOfBook.getTitle()));
+       for (Book book : books){
+           dbServiceBook.saveBook(book);
+        }
     }
 
-    @GetMapping(value = "authors")
-    public void getAuthorsOfBooks() {
-        List<AuthorsOfBooks> authorsOfBooks = libraryClient.getBookAuthor();
-
-        authorsOfBooks.forEach(authorsOfBook -> System.out.println(authorsOfBook.getName()));
-    }
-
-    @GetMapping(value = "authorsList")
-    public List<AuthorsOfBooksDto> getAuthorsOfBooksList() {
-       return authorsMapper.mapToAuthorsDtoList(dbServiceLibrary.getAllAuthors());
+    @PutMapping(value = "copies")
+    public void putTitleOnCopies(){
 
     }
+
+
+
 
 }

@@ -40,7 +40,7 @@ public class DbServiceLoan {
         Optional<Copy> copyOptional = copyRepository.findById(loan.getId_copy());
         Copy copy = copyOptional.get();
         loan.setCopy(copy);
-        if(loan.getReturned().equals("No")) {
+        if (loan.getReturned().equals("No")) {
             copy.setStatus("Loaned");
         } else {
             copy.setStatus("In library");

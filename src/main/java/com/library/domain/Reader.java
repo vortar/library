@@ -31,9 +31,9 @@ public class Reader {
     @Column(name = "SURNAME")
     private String surname;
 
-    @NotNull
+    //@NotNull
     @Column(name = "DATE")
-    private LocalDate dateOfCardInsertion = LocalDate.now();
+    private LocalDate localDate = LocalDate.now();
     @Transient
     private Loan loan;
 

@@ -34,11 +34,14 @@ public class Book {
     @Column(name = "kinds")
     private String kind;
 
+
+
     @OneToMany(
             targetEntity = Copy.class,
             mappedBy = "book",
-            cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
     private List<Copy> copies = new ArrayList<>();
+
+
 }

@@ -13,7 +13,7 @@ import java.util.List;
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
 @RestController
-@RequestMapping("books/")
+@RequestMapping("books")
 public class BookController {
     @Autowired
     private DbServiceBook dbServiceBook;
@@ -26,18 +26,18 @@ public class BookController {
         return bookMapper.mapToBookDtoList(dbServiceBook.getAllBooks());
     }
 
-    @GetMapping( value = "getBook")
-    public BookDto getBook(@RequestParam Long bookId) throws ObjectNotFoundException {
+    @GetMapping( value = "getBook{bookId}")
+    public BookDto getBook(@PathVariable Long bookId) throws ObjectNotFoundException {
         return bookMapper.mapToBookDto(dbServiceBook.getBook(bookId).orElseThrow(ObjectNotFoundException::new));
     }
 
-    @GetMapping( value = "getBookTitle")
+    @GetMapping( value = "getBookTitle/")
     public BookDto getBookTitle(@RequestParam String bookTitle) throws ObjectNotFoundException {
         return bookMapper.mapToBookDto(dbServiceBook.getBookTitle(bookTitle).orElseThrow(ObjectNotFoundException::new));
     }
 
-    @DeleteMapping( value = "deleteBook")
-    public void deleteBook(@RequestParam Long bookId) {
+    @DeleteMapping( value = "deleteBook/{bookId}")
+    public void deleteBook(@PathVariable Long bookId) {
         dbServiceBook.deleteBook(bookId);
     }
 

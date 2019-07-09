@@ -47,16 +47,13 @@ public class DbServiceCopy {
     {
         Optional<Book> bookOptional = bookRepository.findByTitle(copy.getTitle());
 
-        if(!bookOptional.isPresent()) {
-            //Book book = new Book(copy.getTitle(), copy.getAuthor(), copy.getYearOfPublication());
-            //copy.setBook(book);
-            //bookRepository.save(book);
+     //   if(!bookOptional.isPresent()) {
 
-            System.out.println("That title hasn't in the base");
-        } else {
+          //  System.out.println("That title hasn't in the base");
+      //  } else {
             Book book = bookOptional.get();
             copy.setBook(book);
-        }
+     //   }
 
         return copyRepository.save(copy);
     }
