@@ -1,9 +1,7 @@
 package com.library.service;
 
-import com.library.domain.Copy;
 import com.library.domain.Loan;
 import com.library.domain.Reader;
-import com.library.repository.CopyRepository;
 import com.library.repository.LoanRepository;
 import com.library.repository.ReaderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +17,6 @@ public class DbServiceLoan {
     @Autowired
     LoanRepository loanRepository;
 
-    @Autowired
-    CopyRepository copyRepository;
 
     @Autowired
     ReaderRepository readerRepository;
@@ -34,18 +30,7 @@ public class DbServiceLoan {
     }
 
     public Loan saveLoan(final Loan loan) {
-        Optional<Reader> readerOptional = readerRepository.findById(loan.getId_reader());
-        Reader reader = readerOptional.get();
-        loan.setReader(reader);
-        Optional<Copy> copyOptional = copyRepository.findById(loan.getId_copy());
-        Copy copy = copyOptional.get();
-        loan.setCopy(copy);
-        if (loan.getReturned().equals("No")) {
-            copy.setStatus("Loaned");
-        } else {
-            copy.setStatus("In library");
-            loan.setReturnOfDate(LocalDate.now());
-        }
+
         return loanRepository.save(loan);
     }
 

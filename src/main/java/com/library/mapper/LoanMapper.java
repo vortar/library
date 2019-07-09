@@ -12,22 +12,23 @@ public class LoanMapper {
     public Loan mapToLoan(final LoanDto loanDto) {
         return new Loan(
                 loanDto.getId(),
-                loanDto.getId_copy(),
-                loanDto.getId_reader(),
-                loanDto.getReturned());
+                loanDto.getLoanOfDate(),
+                loanDto.getReturnOfDate());
+
     }
 
     public LoanDto mapToLoanDto(final Loan loan) {
         return new LoanDto(
                 loan.getId(),
-                loan.getId_copy(),
-                loan.getId_reader(),
-                loan.getReturned());
+                loan.getLoanOfDate(),
+                loan.getReturnOfDate());
+
+
     }
 
     public List<LoanDto> mapToLoanDtoList(final List<Loan> loanList) {
         return loanList.stream()
-                .map(t -> new LoanDto(t.getId(), t.getId_copy(), t.getId_reader(), t.getReturned()))
+                .map(t -> new LoanDto(t.getId(), t.getLoanOfDate(), t.getReturnOfDate()))
                 .collect(Collectors.toList());
     }
 

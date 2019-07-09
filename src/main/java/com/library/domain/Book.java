@@ -1,47 +1,81 @@
 package com.library.domain;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
+
+
 @Entity
 @Table(name = "BOOKS")
 public class Book {
+    private Long id;
+    private String title;
+    private String author;
+    private String kind;
+    private Loan loan;
+public Book(){
+
+}
+    public Book(Long id, String title, String author, String kind) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.kind = kind;
+    }
+
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
-    @Column(name = "ID")
-    private Long id;
+    @Column(name = "ID_BOOK")
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
 
     @Column(name = "TITLE")
-    private String title;
+    public String getTitle() {
+        return title;
+    }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
     @Column(name = "Author")
-    private String author;
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
 
     @Column(name = "kinds")
-    private String kind;
+    public String getKind() {
+        return kind;
+    }
 
-
-
-    @OneToMany(
-            targetEntity = Copy.class,
-            mappedBy = "book",
+    public void setKind(String kind) {
+        this.kind = kind;
+    }
+    @OneToOne(mappedBy = "book",
             fetch = FetchType.LAZY
     )
-    private List<Copy> copies = new ArrayList<>();
 
+    public Loan getLoan() {
+        return loan;
+    }
 
+    public void setLoan(Loan loan) {
+        this.loan = loan;
+    }
 }

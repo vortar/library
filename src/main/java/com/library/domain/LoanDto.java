@@ -1,24 +1,28 @@
 package com.library.domain;
 
-import java.time.LocalDate;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.Date;
 
 public class LoanDto {
+
     private Long id;
-    private CopyDto copyDto;
-    private ReaderDto readerDto;
-    private Long id_copy;
-    private Long id_reader;
-    private String returned;
-    private LocalDate loanOfDate = LocalDate.now();
-    private LocalDate returnOfDate;
+    private Date loanOfDate;
+    private Date returnOfDate;
+    private Book Book;
+    private Reader reader;
 
-    public LoanDto() {}
+    public LoanDto() {
 
-    public LoanDto(Long id, Long id_copy, Long id_reader, String returned) {
+    }
+
+    public LoanDto(Long id, Date loanOfDate, Date returnOfDate) {
         this.id = id;
-        this.id_copy = id_copy;
-        this.id_reader = id_reader;
-        this.returned = returned;
+        this.loanOfDate = loanOfDate;
+        this.returnOfDate = returnOfDate;
     }
 
     public Long getId() {
@@ -29,59 +33,36 @@ public class LoanDto {
         this.id = id;
     }
 
-    public CopyDto getCopyDto() {
-        return copyDto;
-    }
-
-    public void setCopyDto(CopyDto copyDto) {
-        this.copyDto = copyDto;
-    }
-
-    public ReaderDto getReaderDto() {
-        return readerDto;
-    }
-
-    public void setReaderDto(ReaderDto readerDto) {
-        this.readerDto = readerDto;
-    }
-
-    public LocalDate getLoanOfDate() {
+    public Date getLoanOfDate() {
         return loanOfDate;
     }
 
-    public void setLoanOfDate(LocalDate loanOfDate) {
+    public void setLoanOfDate(Date loanOfDate) {
         this.loanOfDate = loanOfDate;
     }
 
-    public LocalDate getReturnOfDate() {
+    public Date getReturnOfDate() {
         return returnOfDate;
     }
 
-    public void setReturnOfDate(LocalDate returnOfDate) {
+    public void setReturnOfDate(Date returnOfDate) {
         this.returnOfDate = returnOfDate;
     }
 
-    public Long getId_copy() {
-        return id_copy;
+    public com.library.domain.Book getBook() {
+        return Book;
     }
 
-    public void setId_copy(Long id_copy) {
-        this.id_copy = id_copy;
+    public void setBook(com.library.domain.Book book) {
+        Book = book;
     }
 
-    public Long getId_reader() {
-        return id_reader;
+    public Reader getReader() {
+        return reader;
     }
 
-    public void setId_reader(Long id_reader) {
-        this.id_reader = id_reader;
+    public void setReader(Reader reader) {
+        this.reader = reader;
     }
 
-    public String getReturned() {
-        return returned;
-    }
-
-    public void setReturned(String returned) {
-        this.returned = returned;
-    }
 }

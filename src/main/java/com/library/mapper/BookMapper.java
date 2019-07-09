@@ -14,8 +14,8 @@ public class BookMapper {
                 bookDto.getId(),
                 bookDto.getTitle(),
                 bookDto.getAuthors(),
-                bookDto.getKind(),
-                bookDto.getCopies());
+                bookDto.getKind());
+
 
 
     }
@@ -25,14 +25,14 @@ public class BookMapper {
                 book.getId(),
                 book.getTitle(),
                 book.getAuthor(),
-                book.getKind(),
-                book.getCopies());
+                book.getKind());
+
 
     }
 
     public List<BookDto> mapToBookDtoList(final List<Book> bookList) {
         return bookList.stream()
-                .map(t -> new BookDto(t.getId(), t.getTitle(), t.getAuthor(), t.getKind(), t.getCopies()))
+                .map(t -> new BookDto(t.getId(), t.getTitle(), t.getAuthor(), t.getKind()))
                 .collect(Collectors.toList());
     }
 }
